@@ -1,0 +1,2112 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="csj">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="计算机组织与结构 第一章 基本概念: (*)体系架构(Architecture): 程序员可以看到的属性，包括指令集，用于数据表示的位数、I&#x2F;O机制、寻址技术等 组织(Organization): 架构是怎么实现的，例如通过什么控制信号来实现控制，采用什么接口，用什么内存技术 结构(Structure): 计算机各个组件之间相互关联的方式 (*)功能(Function): 组成计算机的组件可以进行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组织与结构笔记">
+<meta property="og:url" content="http://example.com/2023/11/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E7%BB%87%E4%B8%8E%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="计算机组织与结构 第一章 基本概念: (*)体系架构(Architecture): 程序员可以看到的属性，包括指令集，用于数据表示的位数、I&#x2F;O机制、寻址技术等 组织(Organization): 架构是怎么实现的，例如通过什么控制信号来实现控制，采用什么接口，用什么内存技术 结构(Structure): 计算机各个组件之间相互关联的方式 (*)功能(Function): 组成计算机的组件可以进行">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/res/1.png">
+<meta property="og:image" content="http://example.com/image/res/CPI.png">
+<meta property="og:image" content="http://example.com/image/res/RA.png">
+<meta property="og:image" content="http://example.com/image/res/RB.png">
+<meta property="og:image" content="http://example.com/image/res/2.png">
+<meta property="og:image" content="http://example.com/image/res/45.png">
+<meta property="og:image" content="http://example.com/image/res/3.png">
+<meta property="og:image" content="http://example.com/image/res/4.png">
+<meta property="og:image" content="http://example.com/image/res/8.png">
+<meta property="og:image" content="http://example.com/image/res/10.png">
+<meta property="og:image" content="http://example.com/image/res/11.png">
+<meta property="og:image" content="http://example.com/image/res/23.png">
+<meta property="og:image" content="http://example.com/image/res/12.png">
+<meta property="og:image" content="http://example.com/image/res/14.png">
+<meta property="og:image" content="http://example.com/image/res/16.png">
+<meta property="og:image" content="http://example.com/image/res/17.png">
+<meta property="og:image" content="http://example.com/image/res/19.png">
+<meta property="og:image" content="http://example.com/image/res/24.png">
+<meta property="og:image" content="http://example.com/image/res/DRAM.png">
+<meta property="og:image" content="http://example.com/image/res/SRAM.png">
+<meta property="og:image" content="http://example.com/image/res/27.png">
+<meta property="og:image" content="http://example.com/image/res/28.png">
+<meta property="og:image" content="http://example.com/image/res/29.png">
+<meta property="og:image" content="http://example.com/image/res/30.png">
+<meta property="og:image" content="http://example.com/image/res/31.png">
+<meta property="og:image" content="http://example.com/image/res/32.png">
+<meta property="og:image" content="http://example.com/image/res/33.png">
+<meta property="og:image" content="http://example.com/image/res/34.png">
+<meta property="og:image" content="http://example.com/image/res/35.png">
+<meta property="og:image" content="http://example.com/image/res/36.png">
+<meta property="og:image" content="http://example.com/image/res/37.png">
+<meta property="og:image" content="http://example.com/image/res/38.png">
+<meta property="og:image" content="http://example.com/image/res/39.png">
+<meta property="og:image" content="http://example.com/image/res/RAID0.png">
+<meta property="og:image" content="http://example.com/image/res/RAID1.png">
+<meta property="og:image" content="http://example.com/image/res/RAID2.png">
+<meta property="og:image" content="http://example.com/image/res/RAID3.png">
+<meta property="og:image" content="http://example.com/image/res/RAID4.png">
+<meta property="og:image" content="http://example.com/image/res/RAID5.png">
+<meta property="og:image" content="http://example.com/image/res/RAID6.png">
+<meta property="og:image" content="http://example.com/image/res/40.png">
+<meta property="og:image" content="http://example.com/image/res/41.png">
+<meta property="og:image" content="http://example.com/image/res/46.png">
+<meta property="og:image" content="http://example.com/image/res/47.png">
+<meta property="og:image" content="http://example.com/image/res/42.png">
+<meta property="og:image" content="http://example.com/image/res/43.png">
+<meta property="og:image" content="http://example.com/image/res/48.png">
+<meta property="og:image" content="http://example.com/image/res/49.png">
+<meta property="og:image" content="http://example.com/image/res/51.png">
+<meta property="og:image" content="http://example.com/image/res/50.png">
+<meta property="og:image" content="http://example.com/image/res/52.png">
+<meta property="og:image" content="http://example.com/image/res/53.png">
+<meta property="og:image" content="http://example.com/image/res/54.png">
+<meta property="og:image" content="http://example.com/image/res/55.png">
+<meta property="article:published_time" content="2023-11-20T14:55:58.000Z">
+<meta property="article:modified_time" content="2023-11-21T09:59:43.202Z">
+<meta property="article:author" content="csj">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/image/res/1.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>计算机组织与结构笔记 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>csj的站点</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="计算机组织与结构笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-20 22:55" pubdate>
+          2023年11月20日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          18k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          154 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">计算机组织与结构笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="计算机组织与结构">计算机组织与结构</h1>
+<h1 id="第一章"><strong><em>第一章</em></strong></h1>
+<h2 id="基本概念"><font color=Red>基本概念:</font></h2>
+<h3
+id="体系架构architecture"><font color=Red>(*)</font>体系架构(Architecture):</h3>
+<h4
+id="程序员可以看到的属性包括指令集用于数据表示的位数io机制寻址技术等"><font color="#0099ff">程序员可以看到的属性，包括指令集，用于数据表示的位数、I/O机制、寻址技术等</font></h4>
+<h3 id="组织organization">组织(Organization):</h3>
+<h4
+id="架构是怎么实现的例如通过什么控制信号来实现控制采用什么接口用什么内存技术"><font color="#0099ff">架构是怎么实现的，例如通过什么控制信号来实现控制，采用什么接口，用什么内存技术</font></h4>
+<h3 id="结构structure">结构(Structure):</h3>
+<h4
+id="计算机各个组件之间相互关联的方式"><font color="#0099ff">计算机各个组件之间相互关联的方式</font></h4>
+<h3 id="功能function"><font color=Red>(*)</font>功能(Function):</h3>
+<h4
+id="组成计算机的组件可以进行的操作"><font color="#0099ff">组成计算机的组件可以进行的操作</font></h4>
+<h2 id="重点知识点"><font color=Red>重点知识点:</font></h2>
+<h3
+id="计算机的主要部件"><font color=Red>(*)</font>计算机的主要部件:</h3>
+<h4
+id="处理器cpu内存磁盘控制器和磁盘输入输出设备键盘显示器图形适配器内部cache连接各个部件的总线其他部件"><font color="#0099ff">处理器CPU，内存，磁盘控制器和磁盘，输入输出设备(键盘，显示器，图形适配器)，内部Cache，连接各个部件的总线，其他部件</font></h4>
+<h3 id="指令的简单执行过程">指令的简单执行过程:</h3>
+<div class="note note-info">
+            <p><font color=Red>Add &amp;nbsp R1, R2</font><br><font color=skyBlue>a. &amp;nbsp ALU1 ← [R1] </font><br> {content of R1is moved to ALU1 } <em>(R1的内容移动到ALU1)</em> <br><font color=skyBlue>b. &amp;nbsp ALU2 ← [R2] </font><br> {content of R2is moved to ALU2 } <em>(R2的内容移动到ALU2)</em> <br><font color=skyBlue>c. &amp;nbsp ADD </font><br> {content of ALU1 + ALU2= ALU3 }<br> <font color=skyBlue>d. &amp;nbsp R1 ← [ALU3] </font><br>{Result of addition is moved to R1}<br></p>
+          </div>
+<h3 id="组织架构在体系中的位置">组织架构在体系中的位置:</h3>
+<p><img src="/image/res/1.png" srcset="/img/loading.gif" lazyload /> <div class="note note-secondary">
+            <ul><li>翻译： Layers of computer functions or subsystems <br>计算机功能或子系统的层 <br> Application Program; Complier; OS <br>应用程序； 编译程序； 操作系统 <br> COA: 计算机组织与体系结构 <br>Circuit Design; Chip Layout <br> 电路设计； 芯片规划</li></ul>
+          </div> <div class="note note-danger">
+            <ul><li>补充：计算机组织架构是计算机硬件与软件之间的接口和互动方式，包括以下几个方面：<br>1.指令集架构 <br> 2.存储器层次结构 <br> 3.总线结构 <br></li></ul>
+          </div></p>
+<h2 id="补充"><font color=Red>补充:</font></h2>
+<h3
+id="计算机由门和存储单元以及连接组成"><font color=Red>(*)</font>计算机由门和存储单元以及连接组成</h3>
+<h3
+id="嵌入式系统是计算机硬件和软件的组合或者额外的机械或其他部件设计执行专用功能"><font color=Red>(*)</font>嵌入式系统是计算机硬件和软件的组合，或者额外的机械或其他部件，设计执行专用功能</h3>
+<blockquote>
+<p>is a combination of computer hardware and software, and perhaps
+additional mechanical or other parts,designed to perform a dedicated
+function</p>
+</blockquote>
+<h3
+id="重新排序以下项目以说明内存层次结构最接近cpu的项目应该放在第一个最远的最后一个它们是寄存器cache主内存磁盘cdromtape磁带"><font color=Red>(*)</font>重新排序以下项目，以说明内存层次结构。最接近CPU的项目应该放在第一个，最远的最后一个。它们是寄存器，Cache，主内存，磁盘，CDROM，Tape(磁带)</h3>
+<blockquote>
+<p>Reorder the following items to illustrate the memory hierarchy.The
+item that is closest to CPU should be put to the first, thefarthest the
+last. They are Registers, Cache, Main Memory,Hard Disk, CDROM,Tape</p>
+</blockquote>
+<h1 id="第二章"><strong><em>第二章</em></strong></h1>
+<h2 id="基本概念-1"><font color=Red>基本概念:</font></h2>
+<h3
+id="冯诺依曼机存储程序计算机"><font color=Red>(*)</font>冯诺依曼机(存储程序计算机):</h3>
+<h4
+id="有一个主存储器主存储器内可以存储数据和指令-2.-数据和指令都以二进制的方式存储在主存储器中-3.-数据和指令通过地址来进行寻址-4.-数字逻辑单元alu执行基本的操作-5.-由控制单元cu来确定合适的操作顺序"><font color="#0099ff">1.
+有一个主存储器，主存储器内可以存储数据和指令；<br>2.
+数据和指令都以二进制的方式存储在主存储器中；<br>3.
+数据和指令通过地址来进行寻址；<br>4.
+数字逻辑单元ALU执行基本的操作；<br>5.
+由控制单元CU来确定合适的操作顺序。</font></h4>
+<h3 id="系列机"><font color=Red>(*)</font>系列机:</h3>
+<h4
+id="具有相同或几乎相同的指令集-2.-相同或相似的操作系统-3.-随着技术的提高计算机的速度逐步提升-4.-计算机的io端口的数量逐步提升-5.-计算机的主存容量的逐步增加-6.-计算机的成本也随之增加"><font color="#0099ff">1.
+具有相同或几乎相同的指令集；<br>2. 相同或相似的操作系统；<br>3.
+随着技术的提高，计算机的速度逐步提升；<br>4.
+计算机的I/O端口的数量逐步提升；<br>5. 计算机的主存容量的逐步增加；<br>6.
+计算机的成本也随之增加。</font></h4>
+<h3 id="摩尔定律">摩尔定律:</h3>
+<h4
+id="晶体管数量每年翻一倍"><font color="#0099ff">晶体管数量每年翻一倍</font></h4>
+<blockquote>
+<p><font color=Red>意义:</font> <br> *
+芯片的成本几乎没有变化：<strong>计算机的成本下降了</strong> <br> *
+更高的封装密度意味着<strong>更短的电子路径</strong>，提供更高的速度 <br>
+* <strong>体积更小</strong>，便于放置在各种环境中 <br> *
+<strong>降低了电源和冷却要求</strong> <br> * 更少的互连增加了可靠性</p>
+</blockquote>
+<h3 id="平衡思想">平衡思想:</h3>
+<h4
+id="各个组成部件之间找到一个最佳的组合方案在处理器主存io设备以及互连结构的吞吐量和处理要求之间进行平衡-2.-计算机架构设计中不断进行设计的更新以达到处理器内存io设备以及互连结构之间的平衡以实现最大的整体性能"><font color="#0099ff">1.
+各个组成部件之间找到一个最佳的组合方案，在处理器、主存、IO设备以及互连结构的吞吐量和处理要求之间进行平衡；<br>2.
+计算机架构设计中，不断进行设计的更新，以达到处理器、内存、I/O设备以及互连结构之间的平衡，以实现最大的整体性能</font></h4>
+<h2 id="重点知识点-1"><font color=Red>重点知识点:</font></h2>
+<h3
+id="计算机的发展代次"><font color=Red>(*)</font>计算机的发展代次:</h3>
+<ul>
+<li>第一代：真空管</li>
+<li>第二代：晶体管</li>
+<li>第三代：集成电路</li>
+<li><font color=Red>根据使用的电子元器件划分计算机时代</font></li>
+</ul>
+<h3 id="性能评估方法cpi"><font color=Red>(*)</font>性能评估方法CPI:</h3>
+<p><img src="/image/res/CPI.png" srcset="/img/loading.gif" lazyload /> 例：<br>
+在400MHZ处理器上执行200万条指令</p>
+<table>
+<thead>
+<tr class="header">
+<th>指令类型</th>
+<th>CPI</th>
+<th>指令占比</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>算术和逻辑运算</td>
+<td>1</td>
+<td>60%</td>
+</tr>
+<tr class="even">
+<td>Cache命中的取数/存数</td>
+<td>2</td>
+<td>18%</td>
+</tr>
+<tr class="odd">
+<td>分支</td>
+<td>3</td>
+<td>12%</td>
+</tr>
+<tr class="even">
+<td>Cache失效的存储器访问</td>
+<td>12</td>
+<td>10%</td>
+</tr>
+</tbody>
+</table>
+<p><div class="note note-danger">
+            <p><span class="math display">\[CPI = 0.6 + 2 ∗ 0.18 + 4 ∗ 0.12 + 12 ∗ 0.1 = 2.64\]</span> <span class="math display">\[MIPS = \frac{f}{CPI*10^6}= \frac{400}{2.64} = 152\]</span> 计算加速比： <span class="math display">\[T = \frac{I_c(指令数)}{MIPS * 10^6}\]</span>对于8个处理器，有额外的开销。每个处理器执行200万条指令中的1/8加上25000条开销指令。在这种情况下，8个处理器中的每个处理器的执行时间为：<span class="math display">\[T_s = \frac{2 * 10^6/8 + 25000}{152 * 10^6} = 1.8 ms\]</span> 对于单处理器情况是: <span class="math display">\[T_1 = \frac{2 ∗ 10^6} {178 ∗ 10^6} =11.24ms\]</span> <span class="math display">\[Speedup(加速比) = \frac{time \ to \ excute  \ program \ on \ a \ single\  processor} {time \ to \ excute \ on \ N \ parallel \ processors} =\frac{11.24}{1.8} = 6.24\]</span></p>
+          </div></p>
+<h3 id="阿姆达定律">阿姆达定律:</h3>
+<h5
+id="假定一段代码中有f部分是可以无限制地进行并行并且没有调度产生的代价1-f部分是必须串行运行的如果这个程序在单处理器上的执行时间是t那么如果我们使用n个处理器来运行这个程序运行速度的比例也就是加速比可以用下面的公式来计算">假定一段代码中，有f部分是可以无限制地进行并行，并且没有调度产生的代价；1-f部分是必须串行运行的。如果这个程序在单处理器上的执行时间是T，那么，如果我们使用N个处理器来运行这个程序，运行速度的比例，也就是加速比可以用下面的公式来计算：</h5>
+<p><span class="math display">\[
+Speedup = \frac{T(1-f) + Tf}{T(1-f) + \frac{Tf}{N}} = \frac{1}{(1-f) +
+\frac{f}{N}}
+\]</span></p>
+<h3 id="基准测试的评估计算">基准测试的评估计算:</h3>
+<h4
+id="算数平均计算平均执行速度"><font color="#0099ff">算数平均：计算平均执行速度</font></h4>
+<p><img src="/image/res/RA.png" srcset="/img/loading.gif" lazyload /></p>
+<h4
+id="调和平均指令的平均执行时间"><font color="#0099ff">调和平均：指令的平均执行时间</font></h4>
+<p><img src="/image/res/RB.png" srcset="/img/loading.gif" lazyload /></p>
+<h1 id="第三章"><strong><em>第三章</em></strong></h1>
+<h2 id="基本概念-2"><font color=Red>基本概念:</font></h2>
+<ul>
+<li><p>PC：Program counter 程序计数器</p></li>
+<li><p>IR ：Instruction register 指令寄存器</p></li>
+<li><p><font color=Red>(*)</font>MAR ：Memory address register
+存储器地址寄存器</p></li>
+<li><p>MBR ：Memory buffer register 存储器缓冲寄存器</p></li>
+<li><p>I/O AR ： I/O address register IO地址寄存器</p></li>
+<li><p>I/O BR ： I/O buffer register IO缓冲寄存器</p></li>
+<li><p>AC：Accumulator 累加器</p></li>
+<li><p>ALU：Arithmetic and Logic Unit 算术逻辑单元</p></li>
+<li><p>CU：Control Unit 控制单元</p></li>
+<li><p>指令周期： <div class="note note-warning">
+            <p><font color=Red>(*)</font><font color=Red>指令的执行分为两个阶段：取指(Fetchcycle) - 执行(Execute cycle)</font> <br>一个指令最基本的处理过程称为指令周期 <br> <img src="/image/res/2.png" srcset="/img/loading.gif" lazyload /><br> 取指周期: <br>   计算机进行指令的读取 <br> 执行周期: <br>  计算机执行这个指令。然后继续读取下一条指令 <br><font color=Red>中断周期:</font> <br>   进行中断的处理 <br><font color=Red>间接周期:</font> <br>   间接寻址</p>
+          </div></p></li>
+<li><p><font color=Red>(*)</font>中断:</p></li>
+<li><p><img src="/image/res/45.png" srcset="/img/loading.gif" lazyload /> <div class="note note-light">
+            <p><font color=Red>指令的执行过程，带中断的执行过程</font> <br><font color=Red>中断是其他模块打断正常执行顺序的一种机制</font> <br><font color=Red>目的:</font> <br> 减少CPU的等待时间，提高CPU的效率</p>
+          </div></p></li>
+<li><p>互联结构: <div class="note note-light">
+            <p>计算机包括CPU、内存和I/O <br> 所有的单元都需要连接以完成指令 <br><font color=Red>将计算机中的各个模块连接在一起的通道称为互联结构</font></p>
+          </div></p></li>
+<li><p>总线: <div class="note note-success">
+            <p>连接2个或多个设备的通信通路 <br>一个总线有多个通道(比如32位总线有32个独立的位通道) <br><font color=skyBlue>电源线不算总线</font> <br><font color=Red>分类:</font> <br><br />  数据总线，地址总线和控制总线</p>
+          </div></p></li>
+<li><p>总线仲裁: <br>  
+<font color=Red>每个时间段只能有一个设备进行数据的发送</font></p></li>
+<li><p>总线宽度: <br>  
+<font color=Red>一般采用组的方式，将多条线放在一起，形成一组总线，同时可以传送多位。一组总线中传输线的数量</font></p></li>
+<li><p>总线速度: <br>  
+<font color=Red>1秒钟通过每根导线能传多少个bit</font></p></li>
+<li><p>总线带宽: <br>  
+<font color=Red>也叫吞吐量，总线传输速率，指的是通过总线1秒钟能传输的总数据量</font></p></li>
+</ul>
+<h2 id="重点知识点-2"><font color=Red>重点知识点:</font></h2>
+<h3 id="中断处理方式">中断处理方式:</h3>
+<p><img src="/image/res/3.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="多重中断的处理">多重中断的处理:</h3>
+<h4 id="顺序处理中断">顺序处理中断:</h4>
+<div class="note note-primary">
+            <p>先处理中断x再处理中断y(中断x在y前) <br><font color=Red>高优先级的中断无法及时处理</font></p>
+          </div>
+<h4 id="中断嵌套">中断嵌套:</h4>
+<div class="note note-primary">
+            <p>允许中断被打断 <br> 定义优先级 <br><font color=Red>低级别中断能够被高级别中断所中断<br>高级别中断完成后，继续处理之前的中断</font></p>
+          </div>
+<h3 id="总线类型"><font color=Red>(*)</font>总线类型:</h3>
+<h4 id="系统总线">系统总线:</h4>
+<p>  连接计算机主要部件的总线称为系统总线</p>
+<h4 id="数据总线">数据总线:</h4>
+<div class="note note-warning">
+            <p>提供模块之间传输数据的通道 <br><font color=Red>(*)</font>总线中的数据线越多，那么同时传送的数据就越多</p>
+          </div>
+<h4 id="地址总线"><font color=Red>(*)</font>地址总线:</h4>
+<div class="note note-warning">
+            <p>用于确定数据在存储器中的位置 <br><font color=Red>(*)</font>地址线越多，能够寻址的存储器的空间也越大</p>
+          </div>
+<h4 id="控制总线">控制总线:</h4>
+<div class="note note-warning">
+            <p>用于发送控制信号 <br><font color=Red>(*)</font>控制总线中控制线越多，能发出的控制信号也能越复杂<br></p>
+          </div>
+<h3 id="总线的使用方式"><font color=Red>总线的使用方式:</font></h3>
+<h4
+id="假定一个模块需要发送数据给另一个模块它需要这样去做"><font color="#0099ff">假定一个模块需要发送数据给另一个模块，它需要这样去做：</font></h4>
+<blockquote>
+<ol type="1">
+<li>获取总线的使用权；</li>
+<li>获得总线的使用权之后，再通过总线发送数据。</li>
+</ol>
+</blockquote>
+<h4
+id="假定一个模块需要向另一个模块请求数据它需要这样去做"><font color="#0099ff">假定一个模块需要向另一个模块请求数据，它需要这样去做：</font></h4>
+<blockquote>
+<ol type="1">
+<li>获取总线的使用权；</li>
+<li>通过控制和地址总线向那个模块发送数据请求；</li>
+<li>等待那个模块发送数据过来</li>
+</ol>
+</blockquote>
+<h3 id="总线结构">总线结构:</h3>
+<h4 id="单总线结构">单总线结构:</h4>
+<blockquote>
+<p>多个单元通过一组线连在一起
+数据传输达到总线容量限制后，总线会成为瓶颈</p>
+</blockquote>
+<h4 id="多总线结构">多总线结构:</h4>
+<blockquote>
+<p>多个总线分层设置 靠近CPU的是高速总线 远离CPU的是低速总线</p>
+</blockquote>
+<h4 id="传统的总线结构">传统的总线结构:</h4>
+<p><img src="/image/res/4.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="总线设计要素">总线设计要素</h3>
+<h4 id="类型">类型：</h4>
+<ul>
+<li>专用总线：<br>   只负责某一方面的工作，和其他工作不冲突</li>
+<li>共享总线: <br>   多种功能都用同一个总线 <br>   线少 <br>  
+控制复杂，性能受限</li>
+</ul>
+<h4 id="仲裁方式"><font color="#0099ff">仲裁方式：</font></h4>
+<ul>
+<li><font color=Red>主从机制：主节点控制总线，将信息放在总线上，从节点从主节点接收信息</font></li>
+<li>集中式：单个硬件设备控制总线访问，称为总线控制器或仲裁器
+<div class="note note-info">
+            <ul><li><font color=Red>链式询问方式</font> <br></li><li>三个控制线：<br>     BS: bus busy 总线忙 <br>     BR: bus request总线请求 <br>     BG: bus grant 总线允许 <br></li><li>每个设备发BR信号 <br></li><li><font color="#0099ff">BG从高优先级到低优先级通过各个模块</font><br></li><li><font color="#0099ff">最靠近仲裁器的是最高优先级</font> <br> <imgsrc="/image/res/5.png" /></li></ul>
+          </div> <div class="note note-info">
+            <ul><li><font color=Red>计数器定时询问方式</font> <br></li><li>三个控制线：BS，BR，BG <br><font color=Red>用计数器发送轮询信号(代替BG)</font> <br></li><li>过程：<br>     设备发出BR <br>    收到BR后，如果BS=0，仲裁器发出设备地址信号 <br>    如果地址到达发出BR的设备，设备就可以使用总线 <br>     计数器停止轮询<br></li><li><font color="#0099ff">优先级由仲裁器决定</font> <br></li></ul>
+          </div> <div class="note note-info">
+            <ul><li><font color=Red>独立请求方式</font></li><li>每个设备都有BR和BG</li><li>需要总线的设备发出BR信号</li><li>仲裁器决定哪个设备可以使用，就发一个BG信号给这个设备 <imgsrc="/image/res/6.png" /> &gt;*<font color="#0099ff">一般操作过程</font></li></ul>
+          </div>
+总线请求：需要总线的设备发出请求 <br> 总线仲裁：决定谁用 <br>
+设备地址：主节点获得总线使用权，发送目标地址到地址总线 <br>
+数据传输：在主和从节点之间传输数据 <br>
+总线释放：主节点和从节点在下一个总线周期释放总线</li>
+<li>分布式：没有中央控制器 &gt; 每个模块都可以申请总线 &gt;
+控制逻辑在每个模块上 #### <font color="#0099ff">时序：</font></li>
+<li>作用：确定总线上协调时间的方式</li>
+<li><font color=Red>(*)</font>同步时序：总线上事件的发生由一个同步时钟来决定
+<br> <font color=Red>(**)</font>同步读、同步写： <img
+src="/image/res/7.png" srcset="/img/loading.gif" lazyload /></li>
+<li><font color=Red>(*)</font>异步时序：总线上事件的发生由该事件的上一个事件来决定
+<br> 异步读 <img src="/image/res/8.png" srcset="/img/loading.gif" lazyload /> 异步写 <img
+src="/image/res/9.png" srcset="/img/loading.gif" lazyload /></li>
+</ul>
+<h4 id="宽度">宽度:</h4>
+<blockquote>
+<p><strong><em>数据总线的宽度决定系统性能：</em></strong>
+一次传输的数据位数越多，系统性能越高
+<strong><em>地址总线的宽度决定了系统的容量：</em></strong>
+寻址的空间越大，这也意味着信息存储的越多
+<strong><em>控制总线的宽度决定了操作的灵活性：</em></strong>
+控制总线越宽，控制信号类型越多，操作越灵活</p>
+</blockquote>
+<h4 id="带宽">带宽:</h4>
+<blockquote>
+<p>带宽=总线宽度 * 总线速度</p>
+</blockquote>
+<h1 id="第四章"><strong><em>第四章</em></strong></h1>
+<h2 id="基本概念-3"><font color=Red>基本概念:</font></h2>
+<h3 id="存储系统层次结构">存储系统层次结构:</h3>
+<h4
+id="目的通过多层存储的方式来解决存储器的容量性能和价格的问题">目的：通过多层存储的方式，来解决存储器的容量、性能和价格的问题</h4>
+<p><img src="/image/res/10.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="cache"><font color="#0099ff">Cache</font></h4>
+<ul>
+<li><p>容量小；速度快；位于主存和CPU之间；可能是一个单独的模块，也可能就直接放在CPU芯片上；价格昂贵</p></li>
+<li><p>Cache的行、存储器的块</p></li>
+<li><p><img src="/image/res/11.png" srcset="/img/loading.gif" lazyload /></p></li>
+<li><p>命中率与失效率: <div class="note note-primary">
+            <ul><li>命中：CPU在cache中请求数据，cache将内容返回给CPU，这称为一次命中<br></li><li>失效：CPU请求的数据不在cache中，数据需要从内存中读取 <br></li><li>命中率：上一层的数据请求在本层中能够完成的比例 <br></li><li>失效率：在本层中无法完成的比例。失效率=1-命中率 <br></li><li>失效惩罚：替换cache块的时间+传送数据给处理器的时间 <br></li></ul>
+          </div></p></li>
+<li><p><font color="#0099ff">映射算法</font> <div class="note note-primary">
+            <ul><li>内存中的块数M远大于cache的行数，内存中的块映射到cache中的特定行的算法<br></li><li><strong><em>类型</em></strong>: <br></li><li><font color=Red>(**)</font><font color=Red size="4">直接映射:</font><br></li><li>存储器中的每个块只能映射到cache中唯一的一行 <br></li><li><font color="#0099ff">地址包括两部分：</font>低w位确定块中的字，高s位确定内存中的块，高s位在cache行中分为行域r和标记域s-r<br></li><li><font color="#0099ff">地址结构：</font>24位地址，<em>2位字标识</em>，每块有4个字节，<em>22位块标识</em>，14位行或者块地址，8位标志<br></li></ul><table><thead><tr class="header"><th style="text-align: center;">Tag s-r</th><th style="text-align: center;">Line or Slot r</th><th style="text-align: center;">Word w</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;">8</td><td style="text-align: center;">14</td><td style="text-align: center;">2</td></tr></tbody></table><ul><li><font color=Red size="5">小结:</font> <br><font color=Red>(**)</font> <spanclass="math display">\[内存地址长度=s+w位\]</span> <spanclass="math display">\[内存块大小=cache的行大小=2^w\]</span> <spanclass="math display">\[内存块的数量=2^s\]</span> <spanclass="math display">\[寻址单元数=2^{s+w}\]</span> <spanclass="math display">\[cache的行数=2^r\]</span> <spanclass="math display">\[标记位的长度=s-r位\]</span></li><li><font color=Red size="4">全相联映射:</font> <br></li><li>主存中的块可以映射到cache中的任意一行 <br></li><li><font color="#0099ff">内存地址分解为：</font>tag和块内的字地址<br></li><li>tag唯一确定内存中的一行，cache行的tag用来检查是否匹配 <br></li><li><font color="#0099ff">地址结构：</font>22个标记位，每个块有4个字节32bit的数据，最低的2位确定cache中的块数据中，哪个字是需要的数据<br></li></ul><table><thead><tr class="header"><th style="text-align: center;">Tag</th><th style="text-align: center;">Word</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;">22 bit</td><td style="text-align: center;">2 bit</td></tr></tbody></table><ul><li><font color=Red size="5">小结:</font> <br> <spanclass="math display">\[地址长度=s+w位\]</span> <spanclass="math display">\[寻址空间=2^{s+w}\]</span> <spanclass="math display">\[块大小=2^w\]</span> <spanclass="math display">\[块数量=2^s\]</span> <spanclass="math display">\[cache的行数是m\]</span> <spanclass="math display">\[cache中行的tag标记位为s位\]</span></li><li><font color=Red>(**)</font><font color=Red size="4">组相连映射:</font><br></li><li>cache分为若干个组，每个组包含一些行，内存块映射到某个组中的任意一行<br></li><li>使用组号来决定是cache的哪个组，比较tag标记来确定是否命中 <br></li><li>以2路组关联映射为例：<br></li></ul><table><thead><tr class="header"><th style="text-align: center;">Tag</th><th style="text-align: center;">Set</th><th style="text-align: center;">Word</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;">9 bit</td><td style="text-align: center;">13 bit</td><td style="text-align: center;">2 bit</td></tr></tbody></table><ul><li><font color=Red size="5">小结:</font> <br><font color=Red>(**)</font> <br> <spanclass="math display">\[内存地址长度为s+w位\]</span> <spanclass="math display">\[可寻址内存空间为2^{s+w}个字或字节\]</span> <spanclass="math display">\[内存块或cache行大小为2^w个字或字节\]</span> <spanclass="math display">\[内存中的块数为2^s\]</span> <spanclass="math display">\[cache中每组有k行\]</span> <spanclass="math display">\[总共分为v组，需要用d位来标识，v=2^d\]</span><span class="math display">\[cache总行数为kv=k * 2^d，标志位等于s-d\]</span></li></ul>
+          </div></p></li>
+</ul>
+<h3 id="多级cache">多级Cache</h3>
+<h4
+id="集成度的提高使得cache可以放在cpu芯片上">集成度的提高使得cache可以放在CPU芯片上</h4>
+<blockquote>
+<p>比总线访问更快</p>
+</blockquote>
+<h4
+id="常用的是既使用片上cache也使用片外cache">常用的是既使用片上cache，也使用片外cache</h4>
+<blockquote>
+<p>L1在片上，L2在片外，用SRAM L2访问速度比DRAM快
+L2使用独立的数据通道</p>
+</blockquote>
+<h4 id="两级cache时的命中率">两级Cache时的命中率</h4>
+<blockquote>
+<p><img src="/image/res/23.png" srcset="/img/loading.gif" lazyload /></p>
+</blockquote>
+<h2 id="重点知识点-3"><font color=Red>重点知识点:</font></h2>
+<h3 id="存储系统特征">存储系统特征</h3>
+<ul>
+<li>Location位置：内部，外部</li>
+<li>Capacity容量：字节数，可寻址单元数</li>
+<li>Unit of transfer传送单位</li>
+<li>Access method访问方式：顺序存取，直接存取，随机存取，关联存取</li>
+<li>Performance性能：访问时间，存储周期，传输速率</li>
+<li>Physical type物理类型：半导体，磁介质，光学材料，其他</li>
+<li>Physical
+characteristics物理特征：衰减，易失性，非易失性，可擦除性</li>
+<li>Organisation组织形式</li>
+</ul>
+<h3
+id="命中率访问时间等计算"><font color="#0099ff">命中率、访问时间等计算</font></h3>
+<h4 id="根据命中率计算访问时间">根据命中率计算访问时间</h4>
+<h4
+id="根据访问时间的预期计算命中率">根据访问时间的预期，计算命中率</h4>
+<p><font color=Red>(*)</font> <span
+class="math display">\[h=\frac{N_C}{N_c+N_m}\]</span>
+h：Cache命中率；<br>Nc：Cache完成存取的次数；<br>Nm：主存完成存取的次数
+<span class="math display">\[t_a=h*t_c+(1-h)*t_m\]</span>
+ta：Cache/主存系统的平均访问时间； tc：Cache存取周期；
+tm：主存存取的周期</p>
+<h4 id="读写性能综合计算">读写性能综合计算</h4>
+<h4 id="考虑写回策略的计算">考虑写回策略的计算</h4>
+<blockquote>
+<p>具体见补充写策略</p>
+</blockquote>
+<h3 id="直接映射算法"><font color=Red>直接映射算法:</font></h3>
+<p><img src="/image/res/12.png" srcset="/img/loading.gif" lazyload /> * 直接映射Cache组织 <img
+src="/image/res/13.png" srcset="/img/loading.gif" lazyload /> * 直接映射行表</p>
+<table>
+<thead>
+<tr class="header">
+<th>Cache line</th>
+<th>Main Memory blocks held</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0, m, 2m, 3m, ...</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1, m+1, 2m+1, 3m+1, ...</td>
+</tr>
+<tr class="odd">
+<td>...</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>m-1</td>
+<td>m-1, 2m-1, 3m-1, 4m-1, ...</td>
+</tr>
+</tbody>
+</table>
+<h3 id="全相联映射算法"><font color=Red>全相联映射算法:</font></h3>
+<p><img src="/image/res/14.png" srcset="/img/loading.gif" lazyload /> * 全相联映射Cache组织 <img
+src="/image/res/15.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="组相联映射算法"><font color=Red>组相联映射算法:</font></h3>
+<ul>
+<li>V组相联映射 <img src="/image/res/16.png" srcset="/img/loading.gif" lazyload /></li>
+<li>k路相联映射 <img src="/image/res/17.png" srcset="/img/loading.gif" lazyload /> &gt; *
+V组相联映射同时也可以看做是k个直接映射的同时使用 <br> &gt; *
+cache被分成大小相等的k块，每块大小为v，称为K路相联映射 <br> &gt; *
+内存中的0 ~
+v-1行，通过直接映射方式，映射到cache中每一路的v行中。然后，内存中的v ~
+2v - 1也同样映射到每一路中的v行 <br> &gt; *
+内存中的每个块，可以映射到内存中的k路，也就是k行 <br> <img
+src="/image/res/18.png" srcset="/img/loading.gif" lazyload /></li>
+<li>K路组相联cache组织 <img src="/image/res/19.png" srcset="/img/loading.gif" lazyload /></li>
+</ul>
+<h3 id="替换算法">替换算法：</h3>
+<h4
+id="直接映射只能替换到它对应的cache行">直接映射：只能替换到它对应的cache行</h4>
+<h4 id="相联映射">相联映射：</h4>
+<ul>
+<li><font color=Red>(*)</font>Least Recently used (LRU) 最近使用原则
+&gt; 需要记录cache行的使用时间</li>
+<li>First in first out (FIFO) 先进先出原则 &gt;
+在cache中时间最长的替换出去</li>
+<li><font color=Red>(*)</font>Least frequently used
+(LFU)最少访问频率原则 &gt; 替换掉最少使用的块</li>
+<li>Random 随机原则</li>
+</ul>
+<h2 id="补充-1"><font color=Red>补充:</font></h2>
+<h3 id="映射算法举例">映射算法举例：</h3>
+<h4 id="题目">题目：</h4>
+<ul>
+<li>学生1～16是内存块</li>
+<li>计算机A~H是cache行</li>
+<li>如何给学生分配计算机</li>
+<li><font color=skyBlue size="4">直接映射:</font> &gt; <img
+src="/image/res/20.png" srcset="/img/loading.gif" lazyload /></li>
+<li><font color=skyBlue size="4">全相联映射:</font> &gt; <img
+src="/image/res/21.png" srcset="/img/loading.gif" lazyload /></li>
+<li><font color=skyBlue size="4">2路组关联映射:</font> &gt; <img
+src="/image/res/22.png" srcset="/img/loading.gif" lazyload /></li>
+</ul>
+<h3 id="写策略">写策略:</h3>
+<h4 id="写直达">写直达:</h4>
+<blockquote>
+<p>所有写cache的操作同时会写存储器 <br>
+多个CPU时，能够监视存储器，以保证本地cache的数据及时更新 <br>
+减慢写的速度 <br> #### 写回法: 更新操作最开始只在cache中进行 <br>
+当cache更新的时候，设置“更新位” <br>
+当cache块要替换的时候，如果更新位设置，就更新存储器的数据 <br>
+部分存储器中的数据是无效的 <br> I/O需要通过cache来访问存储器 <br> ####
+例题: * 考虑具有32字节的行大小的缓存，需要30 ns来传送4字节字的主存储器 *
+对于在交换出缓存之前至少写入一次的任何行，并且假定写回法比写直达更有效 *
+在交换出缓存之前必须写入该行的平均次数是多少？
+对于写回法，每个脏行在交换时回写一次，时间为8 * 30=240 ns
+对于写直达，每次更新都需要将一个字写入主内存，耗时30 ns
+因此，如果至少写入一次的平均行在调出之前被写入8次以上， ###
+<font color="#0099ff">统一与分立cache</font> ####
+最初并不区分指令和数据，指令和数据都缓存到同一个cache 高命中率 ####
+采用两个L1 cache的架构，一个cache用于存放数据，另一个用于存放指令 * &gt;
+需要指令的时候，访问指令cache * &gt; 需要数据的时候，访问数据cache *
+减少了取指、解码、执行中的cache竞争，在流水线中很重要 ###
+<font color=Red>相联Cache例题：</font> *
+一个组相联cache，每块大小为4个16位字，组大小为2，cache总容量为4096个字。可缓存的内存容量为64k
+* 32位。设计一种cache的结构，并说明如何进行转换 *
+Cache，4096个字，每行4个16位字，每组2行</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th>Cache行号</th>
+<th>行内字号</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0，1，2，3</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>...</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>1023</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>总共1024行，每行4个字，每个字是16个bit，Cache总共512个组</li>
+<li>内存64k * 32位</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>内存</th>
+<th>行内字号</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0，1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>...</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>65535</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><font color=skyBlue>内存块对应cache行，所以内存总共有32k个块</li>
+<li>如果按字寻址，总共有128k字，需要17位地址</li>
+<li>如果按字节寻址，总共有256k字节，需要18位地址</font></li>
+<li><font color=Red size="4">分析:</font></li>
+<li><blockquote>
+<p>如果内存按字寻址，也就是以字为单位，那么内存总地址位：17位地址。</p>
+</blockquote></li>
+<li><blockquote>
+<p>块内地址为2位。内存总共32k块，cache组为512组，所以cache的组号需要9位</p>
+</blockquote></li>
+<li><blockquote>
+<p>标记位为：17-2-9=6位</p>
+</blockquote></li>
+<li><blockquote>
+<p>如果内存按字节寻址，那么内存总地址位：18位地址。</p>
+</blockquote></li>
+<li><blockquote>
+<p>一个块内有8个字节，块内地址为3位。内存总共32k块，cache组为512组，所以cache的组号需要9位</p>
+</blockquote></li>
+<li><blockquote>
+<p>标记位为：18-3-9=6位</p>
+</blockquote></li>
+<li><blockquote>
+<p><img src="/image/res/24.png" srcset="/img/loading.gif" lazyload /></p>
+</blockquote></li>
+</ul>
+<h1 id="第五章"><strong><em>第五章</em></strong></h1>
+<h2 id="基本概念-4"><font color=Red>基本概念:</font></h2>
+<h3 id="sram和dram">SRAM和DRAM</h3>
+<h4
+id="随机读取存储器ram易失性的存储器需要持续供电">随机读取存储器(RAM)，易失性的存储器，需要持续供电</h4>
+<h4 id="dram动态ram"><font color="#0099ff">DRAM(动态RAM)</font></h4>
+<blockquote>
+<p><img src="/image/res/DRAM.png" srcset="/img/loading.gif" lazyload />
+构造简单，一个晶体管和一个电容，模拟信号，集成度高，价格便宜。需要定时刷新。主要用作内存(主存储器)
+用1个电容器来记录1bit</p>
+</blockquote>
+<h4 id="sram静态ram"><font color="#0099ff">SRAM(静态RAM)</font></h4>
+<blockquote>
+<p><img src="/image/res/SRAM.png" srcset="/img/loading.gif" lazyload />
+构造复杂，6个晶体管组成的阵列，数字信号，每一位的体积大，价格昂贵。不需要定时刷新。主要用作cache</p>
+</blockquote>
+<h3 id="rom">ROM</h3>
+<h4 id="只读存储器">只读存储器</h4>
+<h4 id="非易失性永久存储">非易失性，永久存储</h4>
+<h4
+id="重要的应用程序如微程序子程序库bios等">重要的应用程序，如微程序，子程序库，BIOS等</h4>
+<h4 id="主要用于读也能写的存储器">主要用于读，也能写的存储器</h4>
+<blockquote>
+<p>PROM，EPROM，EEPROM，Flash <br> * PROM: <br>  
+一次可写，也就是可编程，需要特殊的设备去写入 <br> * EPROM: <br>  
+通过紫外线擦除，可以重复写入多次 <br> * EEPROM: <br>  
+直接对一个或多个字节进行定位后写入，写的时间比读长很多 <br> * Flash:
+<br>   采用块存储的方式，电擦除整个内存块 <br></p>
+</blockquote>
+<h3 id="内存刷新">内存刷新</h3>
+<h4 id="dram必须刷新">DRAM必须刷新</h4>
+<blockquote>
+<p>每2~4ms刷新一次 <br>
+<font color=Red>(*)</font><font color=Red>按行刷新</font> <img
+src="/image/res/25.png" srcset="/img/loading.gif" lazyload />
+写入1和后续刷新操作后，DRAM单元电容器上的电压恢复到正常值 <br>
+需要定时去刷新，否则由于电容自然放电，导致存储的电荷丢失，存储的1就变成了0</p>
+</blockquote>
+<h3 id="纠错和纠错码">纠错和纠错码</h3>
+<ul>
+<li>半导体器件容易因为多种原因导致错误</li>
+<li>大多数现在存储系统包含检错和纠错的逻辑</li>
+<li>通过附加位来实现检错和纠错，附加的位数称为纠错码</li>
+<li>纠错码会导致需要保存的字长增加，占用更多的存储空间</li>
+<li>常用的纠错码是汉明码，贝尔实验室的理查德.汉明发明</li>
+</ul>
+<h2 id="重点知识点-4"><font color=Red>重点知识点:</font></h2>
+<h3 id="内存组织">内存组织:</h3>
+<h4
+id="半导体存储器一般都是封装成芯片每个芯片里包含存储位元组成的阵列可以存储n-m的位元数据">半导体存储器一般都是封装成芯片，每个芯片里包含存储位元组成的阵列，可以存储N
+* M的位元数据</h4>
+<h4 id="将多个存储芯片组织一个阵列">将多个存储芯片组织一个阵列</h4>
+<blockquote>
+<p>扩展内存使内存变大，可寻址空间更大
+扩展内存使内存变宽，每次读写的位数等多 <img
+src="/image/res/26.png" srcset="/img/loading.gif" lazyload /></p>
+</blockquote>
+<h4 id="例题">例题：</h4>
+<ul>
+<li>存储器芯片为1Mbit，需要组织成8MB的按字节寻址的存储系统。</li>
+<li>需要多少个这样的芯片？</li>
+<li>需要多少位存储器地址？</li>
+<li>存储芯片如何组织？ <br>   <em>芯片数量:</em> 8Mbyte/1M
+bit=64片<font color=skyBlue>(byte/bit=8)</font> <br>  
+<em>存储器地址位数:</em>
+8Mbyte按字节存储，需要寻址8M个存储单元，所以需要23位地址 <br></li>
+</ul>
+<h3 id="内存访问"><font color=Red>内存访问：</font></h3>
+<h4 id="按行访问">按行访问：</h4>
+<p><img src="/image/res/27.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="网格访问">网格访问:</h4>
+<p><img src="/image/res/28.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="扩展内存">扩展内存：</h3>
+<h4 id="内存变大">内存变大：</h4>
+<blockquote>
+<p><img src="/image/res/29.png" srcset="/img/loading.gif" lazyload /> <img src="/image/res/30.png" srcset="/img/loading.gif" lazyload />
+<font color=Red>地址总线变的更宽，用增加的地址总线来选择存储芯片</font></p>
+</blockquote>
+<h4 id="内存变宽">内存变宽：</h4>
+<p><img src="/image/res/31.png" srcset="/img/loading.gif" lazyload /> *
+使用多个存储器芯片，将存储器的数据位数进行扩宽 <br> *
+地址线用于所有的芯片 <br> *
+每个芯片保存每次输出的一部分内容单元，每次输出的数据是所有芯片输出之和
+<br> *
+数据总线变宽，存储容量变大（每个可寻址单元变大，寻址空间没有变大） <br>
+<img src="/image/res/32.png" srcset="/img/loading.gif" lazyload /> &gt;
+<font color=Red>地址空间没有扩展，但是数据总线的宽度扩展</font></p>
+<h4 id="混合扩展">混合扩展:</h4>
+<p><img src="/image/res/33.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="内存地址解码">内存地址解码</h3>
+<h4
+id="存储系统一般都会包含多个存储芯片">存储系统一般都会包含多个存储芯片</h4>
+<h4
+id="地址解码就是为每个芯片生成片选信号的过程由解码器来完成">地址解码就是为每个芯片生成片选信号的过程。由解码器来完成</h4>
+<p><img src="/image/res/34.png" srcset="/img/loading.gif" lazyload /> <div class="note note-success">
+            <p>例题：<br> 假定CPU访问1KB的存储空间使用128 x 8bit 的存储芯片 <br>需要多少个存储芯片？总共需要多少根地址线，如何使用？ <br> 使用128 * 8bit的存储芯片 <br> 8 memory chips are needed 128x8 = 1024需要8个存储芯片才能达到1024的存储空间 <br> 需要3个地址线来选择存储芯片<br> 7个低位地址线来选择芯片内的存储单元 <br></p>
+          </div></p>
+<h4 id="section"><img src="/image/res/35.png" srcset="/img/loading.gif" lazyload /></h4>
+<h4 id="解码策略">解码策略：</h4>
+<ul>
+<li>全地址解码：<br> &gt; 所有的地址线用于指定存储位置 <br> &gt;
+每个物理存储位置都由唯一的地址来标识 <br></li>
+<li>部分地址解码: <br> &gt;
+如果只需要使用部分地址，就不需要实现全部的地址空间寻址 <br> &gt;
+只需要地址线的一部分用于物理寻址</li>
+</ul>
+<h3 id="内存刷新的计算">内存刷新的计算:</h3>
+<h4
+id="一般内存会组织成n-x-n-x-m-bit的形式其中m为一次读写的位数比如256mb的内存组织成16k-x-16k-x-8bit的形式">一般内存会组织成N
+x N x m bit的形式，其中m为一次读写的位数，比如256MB的内存，组织成16k x
+16k x 8bit的形式</h4>
+<h4 id="按行刷新刷新总时间行数-单行的刷新时间">按行刷新，刷新总时间=行数
+* 单行的刷新时间</h4>
+<h4 id="刷新会导致内存带宽的损失">刷新会导致内存带宽的损失</h4>
+<h4
+id="内存行数越多刷新带来的内存带宽的损失越大">内存行数越多，刷新带来的内存带宽的损失越大</h4>
+<h3 id="检错过程">检错过程:</h3>
+<p><img src="/image/res/36.png" srcset="/img/loading.gif" lazyload /> * 原始数据M通过函数f计算得到校验码K
+<br> * 校验码K和M同时存入到存储器中 <br> *
+输出时，用存储器中存储的M，再次通过函数f进行计算，得到K’，和存储的K进行比较
+<br> &gt; 没有错误，直接将存储的M输出 <br> &gt;
+有错误，但是可以纠错，将存储的M和K进入纠错器，纠错后将正确数据输出 <br>
+&gt; 有错误，并且无法纠错，直接输入错误信号 <br></p>
+<h3 id="汉明纠错码"><font color=Red>汉明纠错码</font></h3>
+<h4 id="汉明码图示">汉明码图示：</h4>
+<p><img src="/image/res/37.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="汉明纠错码的原理">汉明纠错码的原理:</h4>
+<ul>
+<li>4个数据位，3个纠错位</li>
+<li>数据位填到相交的位置</li>
+<li>不相交的部分填入数字，使得每个圆中的1的个数为偶数</li>
+<li>可以发现并纠正1个错误</li>
+<li><font color=Red>(*)</font><span class="math display">\[2^K – 1 &gt;=
+M + K\]</span> 数据位数M，纠错码位数为K(计算纠错码位数) ####
+<font color=Red>汉明纠错码生成过程:</font></li>
+</ul>
+<table style="width:100%;">
+
+<thead>
+<tr class="header">
+<th>Bit position</th>
+<th>12</th>
+<th>11</th>
+<th>10</th>
+<th>9</th>
+<th>8</th>
+<th>7</th>
+<th>6</th>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Position number</td>
+<td>1100</td>
+<td>1011</td>
+<td>1010</td>
+<td>1001</td>
+<td>1000</td>
+<td>0111</td>
+<td>0110</td>
+<td>0101</td>
+<td>0100</td>
+<td>0011</td>
+<td>0010</td>
+<td>0001</td>
+</tr>
+<tr class="even">
+<td>Data bit</td>
+<td>D8</td>
+<td>D7</td>
+<td>D6</td>
+<td>D5</td>
+<td></td>
+<td>D4</td>
+<td>D3</td>
+<td>D2</td>
+<td></td>
+<td>D1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>check bit</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>C8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>C4</td>
+<td></td>
+<td>C2</td>
+<td>C1</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><span class="math display">\[C1 = D1 \bigoplus D2 \bigoplus D4
+\bigoplus D5 \bigoplus D7\]</span> <span class="math display">\[C2 = D1
+\bigoplus D3 \bigoplus D4 \bigoplus D6 \bigoplus D7\]</span> <span
+class="math display">\[C4 = D2 \bigoplus D3 \bigoplus D4 \bigoplus
+D8\]</span> <span class="math display">\[C8 = D5 \bigoplus D6 \bigoplus
+D7 \bigoplus D8\]</span>
+<font color="#0099ff">计算C1的所有数据位，它的位置的最后一位都是1
+计算C2的数据位，它的位置的倒数第二位是1，如此类推</font></p>
+</blockquote>
+<h3
+id="汉明纠错码例题"><font color="#0099ff">汉明纠错码例题：</font></h3>
+<h4
+id="假设8位数据位是00111001数据位d1在最右边校验位计算如下">假设8位数据位是00111001，数据位D1在最右边。校验位计算如下</h4>
+<blockquote>
+<p><span class="math display">\[C1 = 1 \bigoplus 0 \bigoplus 1 \bigoplus
+1 \bigoplus 0 = 1\]</span> <span class="math display">\[C2 = 1 \bigoplus
+0 \bigoplus 1 \bigoplus 1 \bigoplus 0 = 1\]</span> <span
+class="math display">\[C4 = 0 \bigoplus 0 \bigoplus 1 \bigoplus 0 =
+1\]</span> <span class="math display">\[C1 = 1 \bigoplus 1 \bigoplus 0
+\bigoplus 0 = 0\]</span></p>
+</blockquote>
+<h4
+id="假如数据位3发生了错误从0变成了1校验位重新计算的时候我们得到如下结果">假如数据位3发生了错误，从0变成了1。校验位重新计算的时候，我们得到如下结果：</h4>
+<blockquote>
+<p><span class="math display">\[C1 = 1 \bigoplus 0 \bigoplus 1 \bigoplus
+1 \bigoplus 0 = 1\]</span> <span class="math display">\[C2 = 1 \bigoplus
+1 \bigoplus 1 \bigoplus 1 \bigoplus 0 = 0\]</span> <span
+class="math display">\[C4 = 0 \bigoplus 1 \bigoplus 1 \bigoplus 0 =
+0\]</span> <span class="math display">\[C8 = 1 \bigoplus 1 \bigoplus 0
+\bigoplus 0 = 0\]</span></p>
+</blockquote>
+<h4
+id="根据数据生成的新纠错码和老纠错码进行对比得到故障字">根据数据生成的新纠错码和老纠错码进行对比，得到故障字：</h4>
+<blockquote>
+<p><img src="/image/res/38.png" srcset="/img/loading.gif" lazyload /></p>
+</blockquote>
+<h4
+id="故障字是0110表示第6位也就是数据位d3发生了错误">故障字是0110，表示第6位，也就是数据位D3，发生了错误</h4>
+<h2 id="补充-2"><font color=Red>补充:</font></h2>
+<h3
+id="非易失性存储器的特性"><font color=Red>(*)</font>非易失性存储器的特性</h3>
+<blockquote>
+<p>在非易失性存储器中，一旦记录的信息不会恶化，直到故意改变，不需要电力来保留信息
+In a non-volatile(非易失) memory, information once recordedremains
+without deterioration(衰减) until deliberately(故意)changed and no
+electrical power is needed to retain information</p>
+</blockquote>
+<h1 id="第六章"><strong><em>第六章</em></strong></h1>
+<h2 id="基本概念-5"><font color=Red>基本概念:</font></h2>
+<h3
+id="磁盘中的各个术语磁盘磁头磁道扇区柱面">磁盘中的各个术语，磁盘，磁头，磁道，扇区，柱面</h3>
+<p><img src="/image/res/39.png" srcset="/img/loading.gif" lazyload /></p>
+<ul>
+<li>磁盘：<br> <div class="note note-warning">
+            <p>磁盘是在圆形非磁性盘片上涂了一层磁性材料 <br>数据通过读写头来写入或者从磁盘中读取 <br> 直接访问存储方式 <br></p>
+          </div></li>
+<li><font color=Red>(*)</font>磁道： <div class="note note-warning">
+            <p>磁盘划分为若干个同心的环，这样的圆环称为磁道，<font color=skyBlue>数据存在磁道上</font></p>
+          </div></li>
+<li>扇区： <br> <div class="note note-warning">
+            <p>每个磁道划分为若干个扇区。每个磁道一般包含几百个扇区。扇区是数据存储的最小单位，<font color=skyBlue>通用的扇区大小是512个字</font></p>
+          </div></li>
+<li>柱面： <div class="note note-warning">
+            <p>每个盘面上相对应的位置的一组磁道设置为一个柱面，数据按照柱面进行存储。可以减少磁头的移动，提高数据传输的速度，<font color=skyBlue>每个盘片有2个磁头</font></p>
+          </div></li>
+</ul>
+<h3 id="磁盘访问的时间">磁盘访问的时间:</h3>
+<h4 id="寻道时间seek-time">寻道时间(seek time):</h4>
+<blockquote>
+<p>磁头移动到数据所在磁道需要的时间。由磁头移动时间决定。<font color=skyBlue>一般是10ms</font>
+<br></p>
+</blockquote>
+<h4 id="旋转延时rotational-delay">旋转延时(rotational delay):</h4>
+<blockquote>
+<p>磁头到达磁道后，到数据所在扇区从当前位置移动到磁头下面所需要的时间。<font color=skyblue>由磁盘转速决定</font>
+<br></p>
+</blockquote>
+<h4 id="传送时间transfer-time">传送时间(transfer time):</h4>
+<blockquote>
+<p>指的是数据定位后开始进行实际传送的时间 <br></p>
+</blockquote>
+<h4 id="存取时间access-time">存取时间(Access time):</h4>
+<blockquote>
+<p><span class="math display">\[存取时间Access time =寻道时间 Seek
++旋转延迟 rotational delay\]</span></p>
+</blockquote>
+<h3 id="raid">RAID:</h3>
+<ul>
+<li>Redundant Array of Independent Disks 冗余独立磁盘阵列</li>
+<li>常用的有7个级别</li>
+<li>一组物理磁盘，由操作系统驱动形成单一的逻辑硬盘</li>
+<li>数据在不同的物理盘上分布</li>
+<li>使用冗余容量来保存校验信息</li>
+<li>作用：增加容量，提高可靠性，提高读写性能</li>
+</ul>
+<h3 id="光盘">光盘</h3>
+<ul>
+<li>Compact Disk——CD：压缩光盘</li>
+<li>数据就是用这个膜的表面上的微小凹坑来表示</li>
+<li>采用的是一条螺旋线，从中心开始往外旋转，一直到最外边。最内和最外的扇区的长度就是一样的</li>
+<li>盘片旋转的线速度恒定</li>
+<li>种类: &gt; CD，CD-R，CD-RW，DVD，DVD-W，HD-DVD，Blue-ray</li>
+</ul>
+<h3 id="磁带">磁带</h3>
+<ul>
+<li>顺序访问</li>
+<li>速度慢</li>
+<li>价格便宜</li>
+<li>主要用于备份和恢复</li>
+</ul>
+<h2 id="重点知识点-5"><font color=Red>重点知识点:</font></h2>
+<h3 id="磁盘容量的计算">磁盘容量的计算:</h3>
+<ul>
+<li>磁盘以相同的角速度旋转</li>
+<li>每个磁道上的扇区数相同</li>
+<li>内圈的存储密度决定了磁盘的容量</li>
+<li><span class="math display">\[磁盘容量=每扇区字节数 * 磁道的扇区数 *
+磁道数 * 盘面数\]</span></li>
+</ul>
+<h3
+id="磁盘读写速度的计算"><font color=Red>磁盘读写速度的计算</font></h3>
+<h4 id="transfer-time---t-传送时间t"><font color=Red>(**)</font>
+<font color="#0099ff">Transfer time - T 传送时间T</font></h4>
+<blockquote>
+<p><span class="math display">\[T = \frac{b}{rN}\]</span> b = number of
+bytes to be transferred 需要传送的字节数 N = number of bytes on a track
+一个磁道上的字节总数 r = rotation speed, in revolutions per second
+旋转速度</p>
+</blockquote>
+<h4
+id="the-total-average-access-time-including-transfer-time-总的平均访问时间包括传输时间"><font color=Red>(**)</font>
+<font color="#0099ff">The total average access time (including transfer
+time) 总的平均访问时间，包括传输时间</font></h4>
+<blockquote>
+<p><span class="math display">\[T_a = T_s + \frac{1}{2r} +
+\frac{b}{rN}\]</span> 总的时间=寻道时间+平均旋转延时+传送时间 Ts = seek
+time 寻道时间 1/2r is the average Rotational latency 平均旋转延时</p>
+</blockquote>
+<h3 id="raid0">RAID0</h3>
+<ul>
+<li>没有冗余</li>
+<li>数据条带跨磁盘</li>
+<li>存储能够提升访问速度</li>
+<li>设计简单，容易实现没有容错机制</li>
+<li>可用空间为所有磁盘空间之和</li>
+<li>适用于成本比可靠性的要求更高的场景，比如视频生产和编辑</li>
+</ul>
+<h4 id="raid0映射图">RAID0映射图</h4>
+<p><img src="/image/res/RAID0.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="raid1">RAID1</h3>
+<ul>
+<li>全镜像</li>
+<li>单个磁盘读，两个磁盘写</li>
+<li>故障恢复简单</li>
+<li>价格昂贵</li>
+<li>可用空间为全部空间的1/2</li>
+<li>适用于可靠性要求高的场合</li>
+</ul>
+<h4 id="raid1映射图">RAID1映射图</h4>
+<p><img src="/image/res/RAID1.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="raid2">RAID2</h3>
+<ul>
+<li>磁盘分为数据盘和纠错盘</li>
+<li>采用汉明纠错码生成纠错码，保存在纠错盘中</li>
+<li>冗余度很高，价格昂贵</li>
+<li>读写比较慢，需要全部磁盘参与计算</li>
+<li>根据数据盘的数量决定冗余盘的数量。例如，4个数据盘，需要3个纠错盘；8个数据盘，需要4个纠错盘</li>
+<li>使用的不多</li>
+</ul>
+<h4 id="raid2映射图">RAID2映射图</h4>
+<p><img src="/image/res/RAID2.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="raid3">RAID3</h3>
+<ul>
+<li>只设置了一个冗余盘</li>
+<li>奇偶校验</li>
+<li>损坏一个盘，可以通过其他盘重构数据</li>
+<li>写比较慢，需要进行奇偶校验位计算</li>
+<li>读写都是全部盘参与</li>
+<li>可用空间为（N-1）/N</li>
+</ul>
+<h4 id="raid3映射图">RAID3映射图</h4>
+<p><img src="/image/res/RAID3.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="raid4">RAID4</h3>
+<ul>
+<li>只设置了一个校验盘</li>
+<li>各个数据盘独立</li>
+<li>数据盘采用大条带</li>
+<li>数据盘写入数据时，同时根据奇偶校验，将校验位写到校验盘</li>
+<li>读数据可以并行进行，写入需要计算校验，比较慢</li>
+<li>校验盘的压力比较大</li>
+<li>可用空间为（N-1）/N</li>
+</ul>
+<h4 id="raid4映射图">RAID4映射图</h4>
+<p><img src="/image/res/RAID4.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="raid5">RAID5</h3>
+<ul>
+<li>只设置了一个校验盘，和RAID4类似</li>
+<li>校验条带轮流分布在各个盘上</li>
+<li>避免RAID4的校验盘的瓶颈</li>
+<li>可用空间为（N-1）/N</li>
+<li>通常用在网络服务器上</li>
+</ul>
+<h4 id="raid5映射图">RAID5映射图</h4>
+<p><img src="/image/res/RAID5.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="raid6">RAID6</h3>
+<ul>
+<li>双校验盘</li>
+<li>不同的算法，生成2个奇偶校验码，放在不同的校验条带上</li>
+<li>校验条带轮流分布在各个盘上</li>
+<li>可靠性高，写速度比较慢</li>
+<li>可用空间为（N-2）/N</li>
+<li>通常用在可靠性要求较高的场合，比如数据库服务器</li>
+</ul>
+<h4 id="raid6映射图">RAID6映射图</h4>
+<p><img src="/image/res/RAID6.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="典型光盘的容量">典型光盘的容量</h3>
+<ul>
+<li>CD：650MB，大概70分钟的音频</li>
+<li>DVD：4.7GB</li>
+<li>双面双层DVD：17GB</li>
+<li>HD-DVD：单面单层15GB</li>
+<li>Blue-ray：单层 25GB</li>
+</ul>
+<h2 id="补充-3"><font color=Red>补充:</font></h2>
+<h3 id="存储器存取方式">存储器存取方式：</h3>
+<h4
+id="顺序存取"><font color=Red>(*)</font><font color="#0099ff">顺序存取：</font></h4>
+<div class="note note-primary">
+            <p>数据以线性的方式存放在存储介质中。读取数据必须按照顺序的方式，从当前的位置按照顺序移动到数据所在的位置进行读取。典型的顺序存取是_磁带_</p>
+          </div>
+<h4
+id="直接存取"><font color=Red>(*)</font><font color="#0099ff">直接存取：</font></h4>
+<div class="note note-primary">
+            <p>数据按块存储在介质中，并且每个块都有一个唯一的地址。存取时，先按照这个唯一地址到达所在的块，然后在块中，顺序搜索到数据。典型的直接存取是_硬盘_</p>
+          </div>
+<h4 id="随机存取"><font color="#0099ff">随机存取：</font></h4>
+<h5
+id="每个存取单元都有一个唯一的地址通过寻址机制可以直接找到这个位置不依赖于之前的存取操作所在的位置典型的随机存取是_内存_">每个存取单元都有一个唯一的地址，通过寻址机制可以直接找到这个位置，不依赖于之前的存取操作所在的位置。典型的随机存取是_内存_</h5>
+<h4 id="关联存取"><font color="#0099ff">关联存取：</font></h4>
+<h5
+id="关联存取是通过对字中的部分内容进行比较如果匹配就进行存取操作关联存取是对字的内容进行比较不是地址寻址典型的关联存取是_cache_">关联存取是通过对字中的部分内容进行比较，如果匹配就进行存取操作。关联存取是对字的内容进行比较，不是地址寻址。典型的关联存取是_Cache_</h5>
+<h3 id="磁盘io传输的时序">磁盘IO传输的时序</h3>
+<p><img src="/image/res/40.png" srcset="/img/loading.gif" lazyload /></p>
+<ul>
+<li>读写之前，首先要等待设备和通道空闲 <br></li>
+<li>寻道时间：磁头从当前位置移动到数据所在的磁道的时间 <br></li>
+<li>旋转延迟：数据所在的扇区旋转到磁头可以读写的位置 <br></li>
+<li>数据传输：数据实际的传送阶段 <br></li>
+<li>存取时间：寻道时间+旋转延迟</li>
+</ul>
+<h3
+id="磁盘读写速度的计算例题"><font color="#0099ff">磁盘读写速度的计算例题</font></h3>
+<ul>
+<li>旋转速度为15000转每分钟</li>
+<li>每个磁道有500个扇区</li>
+<li>每个扇区512个字节</li>
+<li>平均寻道时间是4ms</li>
+<li>如果文件大小是1.25M，总共需要多长时间？</li>
+<li>文件按照扇区和磁道顺序存储</li>
+<li>文件内容完全随机存储 <br> &gt; 平均寻道时间4ms <br> &gt;
+每个道旋转一圈需要4ms <br> &gt; 第一个道的总传输时间: 4ms + 2ms + 4ms =
+10 ms 需要10ms <br> &gt;
+后续的磁道不需要寻道时间，只需要一个平均旋转延迟，定位磁头到第一个数据扇区:
+2ms + 4ms=6ms <br> &gt; 总的时间 = 10 ms + 4 x (2+4) ms = 34 ms
+首个磁道时间+4个其他磁道时间=34ms <br></li>
+</ul>
+<h3
+id="磁盘有关计算合集例题此处引用的是未改答案前的版本"><font color="#0099ff">磁盘有关计算合集例题：</font><em>(此处引用的是未改答案前的版本)</em></h3>
+<h5
+id="考虑一个有8个面的磁盘驱动器每面有512个磁道每道上有64个扇区扇区大小为1kb平均寻道时间是8ms道间移动时间是1.5ms磁盘转速为3600rpm可以读取同一柱面上的连续磁道而磁头不需要移动">考虑一个有8个面的磁盘驱动器，每面有512个磁道，每道上有64个扇区，扇区大小为1KB。平均寻道时间是8ms,道间移动时间是1.5ms，磁盘转速为3600rpm。可以读取同一柱面上的连续磁道而磁头不需要移动。</h5>
+<ul>
+<li>(a)磁盘容量是多少？</li>
+<li>(b)平均存取时间是多少？假设某文件被存储在连续柱面的连续扇区和连续磁道上，起始位置为柱面i上第0道的第0号扇区。</li>
+<li>(c)估计传送5MB大小的文件所需要的时间。</li>
+<li>(b)突发传送率是多少？ <div class="note note-danger">
+            <ul><li><ol type="a"><li><span class="math display">\[磁盘容量为：8 ∗ 512 ∗ 64 ∗ 1𝐾B =256MB\]</span></li></ol></li><li><ol start="2" type="a"><li><span class="math display">\[平均寻道时间：8𝑚s\]</span> <spanclass="math display">\[旋转延迟时间\frac{60}{3600 * 2} * 1000 =8.3𝑚s\]</span> <span class="math display">\[平均存取时间为：8 + 8.3 =16.3𝑚s\]</span></li></ol></li><li>(c)<span class="math display">\[5MB需要\frac{5MB}{64KB}=80个磁道\]</span> (涉及MB，KB等的计算先将其化为B) <br> <spanclass="math display">\[由于总共有8个盘，所以总共是 \frac{80}{8} =10个柱面\]</span>传送文件所需时间主要包括寻道时间，旋转延迟，读取时间，道间移动时间 <br><span class="math display">\[读取时间为每个柱面 \frac{60}{3600} * 8 *1000 = 133.3ms\]</span> <spanclass="math display">\[传送5MB大小文件所需时间为：（8 + (8.3 + 133.3)）+9 * (8.3 + 133.3 + 1.5) = 1437.5ms\]</span>“+”前的式子：第一个柱面，“+”后的式子：其他柱面 <br></li><li>(d)<span class="math display">\[突发传送率为：\frac{3600}{60} * 64 *1𝐾B = 3.84 MB/S\]</span></li></ul>
+          </div></li>
+</ul>
+<h1 id="第七章"><strong><em>第七章</em></strong></h1>
+<h2 id="基本概念-6"><font color=Red>基本概念:</font></h2>
+<h3 id="io模块">I/O模块</h3>
+<ul>
+<li>I/O模块不仅实现了外设和系统总线的互连，同时还需要完成外设和系统总线之间的通信逻辑</li>
+<li>I/O模块向上通过系统总线或中央交换器与处理器和存储器进行连接</li>
+<li>I/O模块向下通过专用的数据线与一个或多个外设连接</li>
+<li>I/O模块的功能：控制和定时，处理器通信，设备通信，数据缓冲，检错处理</li>
+</ul>
+<h4 id="通用的io模块模型">通用的I/O模块模型</h4>
+<p><img src="/image/res/41.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="外设结构框图">外设结构框图</h4>
+<p><img src="/image/res/46.png" srcset="/img/loading.gif" lazyload /></p>
+<h4 id="io模块框图">I/O模块框图</h4>
+<p><img src="/image/res/47.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="三种io技术">三种I/O技术</h3>
+<blockquote>
+<p>编程式I/O，中断式I/O，直接存储器访问</p>
+</blockquote>
+<h4
+id="编程式io"><font color=Red>(*)</font><font color="#0099ff">编程式I/O</font></h4>
+<blockquote>
+<p><em>处理器能直接控制I/O模块</em>，感知I/O模块的状态，并且下发读、写命令，进行数据的传输
+<br> <font color=skyBlue>CPU下发指令后，需要等待I/O模块完成操作</font>
+<br> <em>浪费CPU时间</em> <br> <img src="/image/res/42.png" srcset="/img/loading.gif" lazyload /></p>
+</blockquote>
+<h4 id="中断式io"><font color="#0099ff">中断式I/O</font></h4>
+<blockquote>
+<p><em>CPU不需要等待</em>，也不需要不停地检查I/O设备的状态，<em>而是可以继续处理后续的指令</em>
+<br>
+<font color=skyBlue>I/O模块在准备好和处理器进行数据交换的时候，它会发起一个中断请求</font>
+<br>
+处理器发现有中断，就进行中断处理。不用一直等待，降低了CPU的无效等待时间，提高了处理效率
+<br> <img src="/image/res/43.png" srcset="/img/loading.gif" lazyload /></p>
+</blockquote>
+<h4
+id="dma"><font color=Red>(*)</font><font color="#0099ff">DMA</font></h4>
+<blockquote>
+<p>Direct Memory Access(直接存储器访问) <br>
+<font color=skyBlue>能够实现内存和 I/O直接传输数据的模块</font> <br>
+<font color=Red>(*)</font>DMA代替CPU完成内存和 I/O之间的传输 <br>
+减少了CPU的参与度，进一步提高了CPU的效率 <br> <img
+src="/image/res/44.png" srcset="/img/loading.gif" lazyload /></p>
+</blockquote>
+<h3 id="周期窃取"><font color=Red>(*)</font>周期窃取:</h3>
+<ul>
+<li>DMA需要使用系统总线来管理数据的传输</li>
+<li>或者是处理器不需要系统总线的时候工作，或者强制处理器临时挂起操作，以便DMA模块使用总线</li>
+<li><strong><em>强制处理器临时挂起的方式称为“周期窃取” ，</em></strong>
+相当于说DMA模块窃取了一个总线周期</li>
+<li>和中断不一样，不需要保存上下文信息，<font color="#0099ff">CPU仅仅是挂起一个时钟周期</font></li>
+</ul>
+<h3 id="io通道和io处理器">I/O通道和I/O处理器</h3>
+<h5
+id="io模块经过增强后成为一个有自主控制权的独立处理器具有定制的指令集cpu指示io处理器在内存中执行io程序无需cpu干预">I/O模块经过增强后，成为一个有自主控制权的独立处理器，具有定制的指令集。CPU指示I/O处理器在内存中执行I/O程序，无需CPU干预。</h5>
+<h5
+id="io处理器负责处理大部分任务包括控制终端">I/O处理器负责处理大部分任务，包括控制终端</h5>
+<h5
+id="不对io通道和io处理器做区分统称为io通道">不对I/O通道和I/O处理器做区分，统称为I/O通道</h5>
+<h2 id="重点知识点-6"><font color=Red>重点知识点:</font></h2>
+<h3 id="设备和cpu之间的数据传输过程">设备和CPU之间的数据传输过程</h3>
+<ul>
+<li>CPU检测I/O模块的状态</li>
+<li>I/O模块返回状态</li>
+<li>如果就绪，CPU请求数据</li>
+<li>I/O模块从设备中获取数据</li>
+<li>I/O模块传输数据给CPU</li>
+</ul>
+<h3 id="io模块和处理器的通信功能">I/O模块和处理器的通信功能</h3>
+<blockquote>
+<p>命令解码 <br> 地址识别 <br> 传输传送 <br></p>
+</blockquote>
+<h3 id="编程式io模块工作流程">编程式I/O模块工作流程</h3>
+<blockquote>
+<p>CPU需要执行I/O操作的时候，CPU发送指令，请求I/O操作 <br>
+I/O模块执行对应的操作，执行完成后，设置状态位 <br>
+在待期间，CPU会周期性地检查状态，看I/O模块是不是执行完了 <br>
+I/O在执行完成之后，不会通知CPU它的完成状态，也不会发送中断信息给CPU <br>
+在这个期间，CPU只能等待，或者过一会儿再来检查状态位 <br></p>
+</blockquote>
+<h3 id="io地址方式">I/O地址方式</h3>
+<h4
+id="内存映射io地址"><font color="#0099ff">内存映射I/O地址</font></h4>
+<blockquote>
+<p>地址空间分为2个部分：一部分给内存，一部分给I/O <br>
+能够使用相同的指令去传输数据 <br> 不需要额外的信号和指令 <br>
+浪费内存空间 <br></p>
+</blockquote>
+<h4
+id="独立映射io地址"><font color="#0099ff">独立映射I/O地址</font></h4>
+<blockquote>
+<p><em>独立地址空间</em> <br> 需要I/O或内存的选择线 <br>
+需要专用的I/O指令 <br> 不浪费内存空间 <br></p>
+</blockquote>
+<h3
+id="识别中断设备的方式"><font color=Red>识别中断设备的方式</font></h3>
+<h4 id="独立中断线">独立中断线</h4>
+<blockquote>
+<p>多个中断线，每个设备有独立的的中断请求 <br></p>
+</blockquote>
+<h4 id="软件轮询">软件轮询</h4>
+<blockquote>
+<p>中断服务程序轮询每个I/O模块，以确定是哪个模块导致了中断 <br>
+状态寄存器：I/O模块产生中断后，写入状态寄存器。处理器查询_状态寄存器_，确定中断的I/O模块
+<br> 一旦识别出正确的模块，处理器将分支到该设备的设备服务例程 <br></p>
+</blockquote>
+<h4 id="硬件轮询"><font color=Red>(*)</font>硬件轮询</h4>
+<blockquote>
+<p>所有I/O模块共享中断请求线 <br> 处理器发现中断，发出一个中断应答信号
+<br> 信号通过IO模块传播，直到到达请求的模块 <br>
+请求模块通过设置一个_向量来响应_ <br>
+处理器用这个向量作为指针指向设备服务程序 <br></p>
+</blockquote>
+<h4 id="总线仲裁">总线仲裁</h4>
+<blockquote>
+<p>I/O模块必须首先获得总线控制权，然后才能触发中断请求线 <br>
+当处理器检测到中断时，它会在中断确认线上做出响应 <br>
+请求模块将其向量放置在数据线上 <br></p>
+</blockquote>
+<h3 id="多重中断处理方式">多重中断处理方式</h3>
+<h4 id="fifo">FIFO</h4>
+<blockquote>
+<p>先来先处理，没有优先级 <br></p>
+</blockquote>
+<h4
+id="多个中断线每个中断线都有优先级">多个中断线，每个中断线都有优先级</h4>
+<h4
+id="硬件或软件轮询轮询顺序决定了优先级">硬件或软件轮询，轮询顺序决定了优先级</h4>
+<h4
+id="总线仲裁仲裁方式决定了优先级">总线仲裁，仲裁方式决定了优先级</h4>
+<h3 id="dma工作流程"><font color="#0099ff">DMA工作流程</font></h3>
+<ul>
+<li>CPU告诉DMA控制器：操作类型，设备地址，内存块开始地址，数据数量</li>
+<li>CPU继续做其他工作</li>
+<li>DMA控制器处理传输，完成后发出中断</li>
+<li>I/O设备到内存，或者内存到I/O设备</li>
+<li>地址自动增加，计数器更新</li>
+<li>CPU只在传输的开始和结束时介入 <img src="/image/res/48.png" srcset="/img/loading.gif" lazyload /></li>
+</ul>
+<h3
+id="周期窃取工作原理"><font color="#0099ff">周期窃取工作原理</font></h3>
+<ul>
+<li>DMA控制器获得一个时钟周期的总线控制权，在这个时钟周期内传送一个字的数据，传送完成后，将总线控制权还给处理器</li>
+<li>周期窃取不是一个中断。中断处理时，CPU需要保存上下文后再进行中断处理。而在周期窃取中，CPU不需要保存上下文，仅仅是挂起一个周期，然后可以继续访问总线，进行后续的操作。并且挂起只会发生在CPU需要访问总线前的这个周期。如果当前的操作不需要使用总线，那么CPU可以继续进行</li>
+<li>周期窃取会导致CPU挂起一个时钟周期，所以会使得CPU的处理减慢一点点。但是对于数据传输来说，这种方式的效率比编程式I/O或者中断式I/O都要高
+<img src="/image/res/49.png" srcset="/img/loading.gif" lazyload /></li>
+</ul>
+<h1 id="第八章"><strong><em>第八章</em></strong></h1>
+<h2 id="基本概念-7"><font color=Red>基本概念:</font></h2>
+<h3 id="进程和进程调度">进程和进程调度:</h3>
+<h4 id="进程">进程</h4>
+<p>进程是正在执行的程序，进程是在计算机上运行的程序的实例，进程是可以分配给处理器并在处理器上执行的实体
+进程是一种活动单元，其特征是执行一系列指令、当前状态和一组相关的系统指令
+<font color="#0099ff">进程是动态运行的，而程序是静态的</font></p>
+<h4 id="进程处理的五个状态">进程处理的五个状态</h4>
+<ul>
+<li>新建状态：调度程序提交一个程序，操作系统为这个程序创建一个进程，并将进程移入就绪状态</li>
+<li>就绪状态：进程已经准备就绪，等待处理器的执行</li>
+<li>运行状态：进程正在由处理器执行</li>
+<li>等待状态：进程在等待资源，处于挂起状态</li>
+<li>终止状态：进程运行结束</li>
+</ul>
+<h4 id="进程调度">进程调度:</h4>
+<ul>
+<li>决定多道程序运行效率</li>
+<li>长期调度：决定哪些程序需要加到待处理的进程池</li>
+<li>中期调度：决定哪些进程能加载到内存中</li>
+<li>短期调度：决定哪个进程下一个处理</li>
+</ul>
+<h4 id="进程交换"><font color="#0099ff">进程交换:</font></h4>
+<ul>
+<li>操作系统维护了一个进程的长期队列，队列中的进程放在磁盘上</li>
+<li>内存有空间了，长期队列中的一个进程就会调入到内存中。当进程执行完成后，它就从内存中调出</li>
+<li>如果内存中所有的进程都处于阻塞状态，把某个阻塞的进程“交换”到一个中间队列中，这个中间队列保存的都是临时从内存中调出的进程。然后，从这个中间队列中调入一个已经就绪的进程，或者从长期队列中调度一个新的进程到内存中。这个过程称为“交换”</li>
+<li><font color=skyBlue>交换示意图:</font></li>
+<li><img src="/image/res/51.png" srcset="/img/loading.gif" lazyload /></li>
+</ul>
+<h3 id="操作系统">操作系统:</h3>
+<h4
+id="最基本的系统程序它在用户和计算机之间搭起了一个桥梁为用户使用计算机提供了接口可以更方便使用计算机">最基本的系统程序，它在用户和计算机之间搭起了一个桥梁，为用户使用计算机提供了接口，可以更方便使用计算机</h4>
+<h4 id="操作系统的功能">操作系统的功能：</h4>
+<ul>
+<li>程序创建和执行</li>
+<li>I/O设备访问</li>
+<li>文件访问控制</li>
+<li>系统访问</li>
+<li>错误检测和处理</li>
+<li>统计</li>
+</ul>
+<h4 id="操作系统类型">操作系统类型：</h4>
+<ul>
+<li>是否支持批处理 <br> &gt; 交互式: 用户通常用键盘或显示器与计算机交互
+<br> &gt; 批处理:
+多个用户程序打包后，操作员成批提交给计算机进行处理，处理结束后，打印结果
+<br></li>
+<li>是否支持多道程序 <br> &gt; 单道程序: 处理器一次只能处理一个程序 <br>
+&gt; 多道程序:
+处理器一次可以处理多个程序，多个程序同时装入内存，处理器在程序之间进行切换，同时处理
+<br></li>
+</ul>
+<h3 id="内存分区">内存分区:</h3>
+<h4
+id="将内存分为几个部分分配给包括操作系统在内的进程">将内存分为几个部分，分配给包括操作系统在内的进程</h4>
+<h4 id="固定分区">固定分区:</h4>
+<ul>
+<li><font color=skyBlue>分区大小固定，但不一定都是一样大</font></li>
+<li>进程分配内存时，分配到能容纳它的最小分区</li>
+<li>存在内存浪费的现象</li>
+</ul>
+<h4 id="可变分区">可变分区:</h4>
+<ul>
+<li>按进程要求分配</li>
+<li>会产生内存碎片 <br> &gt;
+碎片：在内存的最后会留下一个空块，太小不能使用(当所有进程都阻塞了，进程交换出去，会产生另一个空块；当进程执行完交换出去后，新的进程进来了，可能会产生另一个空块)</li>
+<li>合并或紧缩法处理碎片 <br> &gt;
+合并法：将相邻的空块合并成一个大的空块 <br> &gt;
+紧缩法：检索内存，将所有的空块移动形成一个大的空块。类似磁盘的去碎片化
+<br></li>
+<li>动态分区的效果 <img src="/image/res/50.png" srcset="/img/loading.gif" lazyload /></li>
+</ul>
+<h3 id="重载问题">重载问题</h3>
+<h4
+id="进程重新加载到内存中没有机制保证会在同一个位置">进程重新加载到内存中，没有机制保证会在同一个位置</h4>
+<h4
+id="采用固定地址的话那么进程被交换出去后再交换进来进程的内存地址发生了变化就会出现问题"><font color="#0099ff">采用固定地址的话，那么进程被交换出去后，再交换进来，进程的内存地址发生了变化，就会出现问题</font></h4>
+<h4
+id="采用逻辑地址和物理地址的方法物理地址是进程在内存中的实际单元地址而逻辑地址是相对于进程起始地址的一个相对地址">采用逻辑地址和物理地址的方法。物理地址是进程在内存中的实际单元地址，而逻辑地址是相对于进程起始地址的一个相对地址</h4>
+<h4
+id="当前进程的起始单元地址称为基址加上逻辑地址就可以得到在内存中的物理地址">当前进程的起始单元地址，称为基址，加上逻辑地址，就可以得到在内存中的物理地址</h4>
+<h4
+id="逻辑地址-程序开始的相对位置"><font color="#0099ff">逻辑地址-程序开始的相对位置</font></h4>
+<h3 id="分页"><font color=Red>分页:</font></h3>
+<ul>
+<li>将内存分为固定大小的小存储块，这个小存储块我们称为“帧”或“页帧”</li>
+<li>进程也按照同样的大小划分为若干个固定块，称为“页”。操作系统负责维护空闲帧的列表</li>
+<li><font color=skyBlue>在给进程分配内存的时候，按照帧来进行分配若干个帧给进程。进程占用的帧_不一定需要是连续的帧_</font></li>
+<li>进程中的页不需要全部全部加载到内存中，可以在需要的时候进行换入产生了虚拟地址的概念</li>
+</ul>
+<h3 id="分段">分段:</h3>
+<h4
+id="分页技术中页对程序员来说是不可见的由操作系统来完成通过分页技术给程序员提供了比实际内存更大的地址空间">分页技术中，页对程序员来说是不可见的，由操作系统来完成，通过分页技术，给程序员提供了比实际内存更大的地址空间</h4>
+<h4
+id="分段技术对程序员来说是可见的程序员或操作系统可以给程序或数据分配不同的段一个程序可以包含多个程序段或数据段">分段技术对程序员来说是可见的。程序员或操作系统可以给程序或数据分配不同的段，一个程序可以包含多个程序段或数据段</h4>
+<h4
+id="好处是简化管理要求允许程序对不同段进行独立修改和编译并且多个进程可以共享段可以实现段保护">好处是：简化管理要求，允许程序对不同段进行独立修改和编译，并且多个进程可以共享段，可以实现段保护</h4>
+<h4
+id="一般采用分段和分页相结合的方式段表决定段的开始地址">一般采用分段和分页相结合的方式。段表决定段的开始地址</h4>
+<h2 id="重点知识点-7"><font color=Red>重点知识点:</font></h2>
+<h3 id="页表"><font color=“#0099ff>页表</font></h3>
+<h4 id="每个进程有它自己的页表">每个进程有它自己的页表</h4>
+<h4
+id="每个页表包含页在内存中对应的帧号">每个页表包含页在内存中对应的帧号</h4>
+<ul>
+<li>Vitural Address</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Page Number</th>
+<th>Offset</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li>Page Table Entry</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>P</th>
+<th>M</th>
+<th>Other Control Bits</th>
+<th>Frame Number</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li>寻址的虚拟地址为“页号+偏移量”</li>
+<li>页表中指明了这个页对应的内存的帧序号</li>
+<li>通过“页——》帧”的转换，以及页内的偏移量，就可以得到逻辑地址在内存中的实际地址
+### 分页的地址翻译: <img src="/image/res/52.png" srcset="/img/loading.gif" lazyload /></li>
+</ul>
+<h3 id="逻辑地址和物理地址">逻辑地址和物理地址:</h3>
+<p><img src="/image/res/53.png" srcset="/img/loading.gif" lazyload /> &gt; relative address within page:
+页内相对地址 <br> &gt; Logical Address: 逻辑地址 <br> &gt; Physical
+Address: 物理地址 <br></p>
+<h3 id="虚拟存储器">虚拟存储器:</h3>
+<h4
+id="操作系统能够管理页或者段在辅存和主存之间的移动以进行换出和换入通过交换的方式"><font color=Red>(*)</font>操作系统能够管理页或者段在辅存和主存之间的移动，以进行换出和换入<font color=Red>(通过交换的方式)</font></h4>
+<h4 id="请求分页页加载方式">请求分页(页加载方式)：</h4>
+<blockquote>
+<p>一个进程的所有页不需要都加载到存储器中 <br> 需要的页才会载入内存中
+<br></p>
+</blockquote>
+<h4 id="页失效的处理">页失效的处理:</h4>
+<blockquote>
+<ul>
+<li>需要的页不在内存中的时候，就会产生一个“页失效”，page fault <br></li>
+<li><font color=Red>(*)</font>操作系统将需要的页载入到内存中，同时需要将某页替换出去，以给载入的页提供空间，这称之为“页替换”
+<br></li>
+<li>将哪个页替换出去，是需要考虑的一个问题。通常是采用最近最少使用原则
+<br></li>
+</ul>
+</blockquote>
+<h4 id="优点">优点：</h4>
+<ul>
+<li>不需要将所有需要运行的进程放到内存中</li>
+<li>根据需要交换页</li>
+<li>运行的进程大于实际可用的内存</li>
+<li>主存称为实际内存</li>
+<li>用户程序能够看到更多的内存-虚拟内存</li>
+</ul>
+<h2 id="补充-4"><font color=Red>补充:</font></h2>
+<h3 id="页表的操作">页表的操作：</h3>
+<p><img src="/image/res/54.png" srcset="/img/loading.gif" lazyload /></p>
+<h3 id="段表">段表：</h3>
+<ul>
+<li>Virtual Address</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Segment Number</th>
+<th>Offset</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li>Segment Table Entry</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>P</th>
+<th>M</th>
+<th>Other Control Bit</th>
+<th>Length</th>
+<th>Segment Base</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<blockquote>
+<p>P = present bit <br> M = modified bit <br> *
+段需要有段表来实现地址转换 *
+虚拟地址中包含段号，从段表中找到改段号对应的段基址，就可以根据偏移量到内存中得到这个虚拟地址对应的物理地址</p>
+</blockquote>
+<h2 id="补充-5"><font color=Red>补充:</font></h2>
+<h3 id="求物理地址例题"><font color=Red>(**)</font>求物理地址例题：</h3>
+<ul>
+<li>假设当前在处理器上执行的进程的页面表如下所示。所有的数字都是十进制的，所有的数字都从零开始编号，所有的地址都是内存字节地址。页面大小为1024个字节
+<img src="/image/res/55.png" srcset="/img/loading.gif" lazyload /></li>
+<li>如果有什么物理地址，下列每个虚拟地址将对应什么物理地址？（如果有任何页面错误，请不要尝试处理。）
+<div class="note note-info">
+            <ul><li>1052: &gt; 1052 = 1024 + 28，虚拟页号为1，页内偏移为28 &gt;映射到物理页帧为7。所以物理地址为7 × 1024+28 = 7196</li><li>2221: &gt; 2221 = 2 × 1024 + 173，虚拟页号为2，页内偏移为173 &gt;虚拟页号为2的页，不在内存中。页缺失</li><li>5499: &gt; 5499 = 5 × 1024 + 379，虚拟页号为5，页内偏移为379 &gt;映射到物理页帧为7。所以物理地址为0 × 1024+379 = 379</li><li><font color=Blue>总结： <br>首先将题目所给的要转换的数(例如：1052)转换成n * 1024 + m 的形式 <br>n为虚拟页号，m为页内偏移量 <br>通过题目所给表格找出对应虚拟页号所映射到的物理页帧号_a_(若不存在，则页缺失)<br> 物理地址为：a * 1024 + m</font> <br></li></ul>
+          </div></li>
+</ul>
+<h4 id="提示">提示：</h4>
+<h5
+id="为往年题中选择判断题的考点"><font color=Red>(*)</font>为往年题中选择判断题的考点</h5>
+<h5
+id="为往年题中大题的考点"><font color=Red>(**)</font>为往年题中大题的考点</h5>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>计算机组织与结构笔记</div>
+      <div>http://example.com/2023/11/20/计算机组织与结构笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>csj</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
